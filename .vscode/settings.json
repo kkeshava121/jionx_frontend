@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/0a5aa36a-60d4-451f-87ee-06c5277360db/resourceGroups/rapidx-frontend/providers/Microsoft.Web/sites/rapidx-frontend",
+    "appService.deploySubpath": "dist/angular-admin"
+}

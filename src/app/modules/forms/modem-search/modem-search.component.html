@@ -1,0 +1,117 @@
+<form
+									class="row g-3"
+									[formGroup]="settingSearchForm"
+									#f="ngForm"
+									(submit)="search(f.value)"
+								>
+									<div class="col-2">
+										<div class="dataTables_length">
+											<label class="form-label"
+												>Show Entries</label
+											>
+											<select
+												[(ngModel)]="itemsPerPage"
+												formControlName="page_size"
+												class="form-select"
+											>
+												<option value="5">5</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+											</select>
+										</div>
+									</div>
+									
+									<!-- <div class="col-2">
+										<label
+											for="inputEmail4"
+											class="form-label"
+											>Operator</label
+										>
+										<input
+											type="text"
+											class="form-control"
+											formControlName="operator"
+											id="inputEmail4"
+											placeholder="Operator"
+										/>
+									</div> -->
+									
+									<div class="col-3">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Device ID</label
+										>
+										<input
+											type="text"
+											class="form-control"
+											formControlName="device_id"
+											id="inputEmail4"
+											placeholder="Device ID"
+										/>
+									</div>
+									<div class="col-3">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Device Info</label
+										>
+										<input
+											type="text"
+											class="form-control"
+											formControlName="device_info"
+											id="inputEmail4"
+											placeholder="Device Info"
+										/>
+									</div>
+                                    <div class="col-3">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Phone Number</label
+										>
+										<input
+											type="number"
+											class="form-control"
+											formControlName="phone_number"
+											id="inputEmail4"
+											placeholder="Phone Number"
+										/>
+									</div>
+                                    <div class="col-3">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Agent</label
+										>
+										<input
+											type="text"
+											class="form-control"
+											formControlName="agent"
+											id="inputEmail4"
+											placeholder="Agent"
+										/>
+									</div>
+									<div class="text-start col-2 pt-4 mt-4">
+										<button
+											type="submit"
+											class="btn btn-primary"
+										>
+											Search
+										</button>
+										<button
+											type="button"
+											(click)="resetSearch()"
+											[disabled]="isReset"
+											class="btn btn-primary mx-1"
+										>
+											<i
+												class="fa fa-refresh"
+												aria-hidden="true"
+											></i>
+										</button>
+									</div>
+									
+								</form>

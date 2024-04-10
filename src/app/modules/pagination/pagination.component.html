@@ -1,0 +1,98 @@
+<div class="custom-pagination pt-4">
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item">
+				<div
+					class="pagination__button pagination__page-first"
+					[ngClass]="{
+						'ypagination__button--disabled': currentPage === 1
+					}"
+					(click)="onFirstPage()"
+				>
+					First
+				</div>
+			</li>
+			<li class="page-item">
+				<div
+			class="pagination__button pagination__page-previous"
+			[ngClass]="{ 'ypagination__button--disabled': currentPage === 1 }"
+			(click)="onPreviousPage()"
+		>
+			Previous
+		</div>
+			</li>
+
+			<li class="page-item" *ngFor="
+      let item of counter(this.allPagesNumber);
+      let i = index
+    "><a class="page-link" [ngClass]="{'active': item+1 == currentPage}" (click)="paginationCurrentPage(item+1)">{{item + 1}}</a></li>
+			<!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+			<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+			<li class="page-item">
+				<div
+			class="pagination__button pagination__page-next"
+			[ngClass]="{
+				'ypagination__button--disabled': currentPage === allPagesNumber
+			}"
+			(click)="onNextPage()"
+		>
+			Next
+		</div>
+			</li>
+			<li class="page-item">
+				<div
+					class="pagination__button pagination__page-last"
+					[ngClass]="{
+						'ypagination__button--disabled':
+							currentPage === allPagesNumber
+					}"
+					(click)="onLastPage()"
+				>
+					Last
+				</div>
+			</li>
+		</ul>
+	</nav>
+	<!-- <div class="pagination__container">
+		<div
+			class="pagination__button pagination__page-first"
+			[ngClass]="{ 'ypagination__button--disabled': currentPage === 1 }"
+			(click)="onFirstPage()"
+		>
+			First
+		</div>
+		<div
+			class="pagination__button pagination__page-previous"
+			[ngClass]="{ 'ypagination__button--disabled': currentPage === 1 }"
+			(click)="onPreviousPage()"
+		>
+			Previous
+		</div>
+		<div class="pagination__page-active">
+			<input
+				class="pagination__current-page"
+				(input)="onSetPage($event)"
+				[value]="currentPage"
+			/>
+			/ <span>{{ allPagesNumber }}</span>
+		</div>
+		<div
+			class="pagination__button pagination__page-next"
+			[ngClass]="{
+				'ypagination__button--disabled': currentPage === allPagesNumber
+			}"
+			(click)="onNextPage()"
+		>
+			Next
+		</div>
+		<div
+			class="pagination__button pagination__page-last"
+			[ngClass]="{
+				'ypagination__button--disabled': currentPage === allPagesNumber
+			}"
+			(click)="onLastPage()"
+		>
+			Last
+		</div>
+	</div> -->
+</div>

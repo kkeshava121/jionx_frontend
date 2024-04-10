@@ -1,0 +1,132 @@
+<form
+									class="row g-3"
+									[formGroup]="settingSearchForm"
+									#f="ngForm"
+									(submit)="search(f.value)"
+								>
+									<div class="col-1">
+										<div class="dataTables_length">
+											<label class="form-label"
+												>Show Entries</label
+											>
+											<select
+												[(ngModel)]="itemsPerPage"
+												formControlName="itemsPerPage"
+												class="form-select"
+											>
+												<option value="5">5</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-1">
+										<label
+											for="inputNanme4"
+											class="form-label"
+											>Sender</label
+										>
+										<select
+											class="form-select"
+											formControlName="senderFilter"
+										>
+											<option selected disabled value="">
+												Choose...
+											</option>
+
+											<option
+												*ngFor="let item of bankList"
+												[value]="item?.bank_name"
+											>
+												{{ item?.bank_name }}
+											</option>
+										</select>
+									</div>
+									<div class="col-2">
+										<label
+											for="inputEmail4"
+											class="form-label"
+											>Message</label
+										>
+										<input
+											type="text"
+											class="form-control"
+											formControlName="textMessageFilter"
+											id="inputEmail4"
+											placeholder="Message"
+										/>
+									</div>
+									<div class="col-2">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Receiver</label
+										>
+										<select
+											class="form-select"
+											aria-label="Default select example"
+											formControlName="receiverFilter"
+										>
+											<option selected value="">
+												Receiver
+											</option>
+											<option
+												*ngFor="
+													let item of phoneNumbers
+												"
+												value="{{ item }}"
+											>
+												{{ item }}
+											</option>
+										</select>
+									</div>
+									<div class="col-2">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Sim Slot</label
+										>
+										<input
+											type="text"
+											class="form-control"
+											formControlName="simSlotFilter"
+											id="inputEmail4"
+											placeholder="Sim Slot"
+										/>
+									</div>
+									<div class="col-2">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Date</label
+										>
+										<input
+											type="date"
+											class="form-control"
+											formControlName="smsDateFilter"
+											id="inputEmail4"
+											placeholder="Agent Account"
+										/>
+									</div>
+									<div class="text-start col-2 pt-4 mt-4">
+										<button
+											type="submit"
+											class="btn btn-primary"
+										>
+											Search
+										</button>
+										<button
+											type="button"
+											(click)="resetSearch()"
+											[disabled]="isReset"
+											class="btn btn-primary mx-1"
+										>
+											<i
+												class="fa fa-refresh"
+												aria-hidden="true"
+											></i>
+										</button>
+									</div>
+								</form>

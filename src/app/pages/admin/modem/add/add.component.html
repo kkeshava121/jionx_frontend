@@ -1,0 +1,80 @@
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h1>Add Modem</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+				<li class="breadcrumb-item"><a href="/admin/modem">Modem</a></li>
+				<li class="breadcrumb-item active">Add Modem</li>
+			</ol>
+		</nav>
+	</div>
+	<!-- End Page Title -->
+
+	<section class="section">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="card pb-4">
+					<div class="card-body">
+						<h5 class="card-title">Modem Information</h5>
+						<!-- <p>Browser default validation with using the <code>required</code> keyword. Try submitting the form below. Depending on your browser and OS, you’ll see a slightly different style of feedback.</p> -->
+
+						<!-- Browser Default Validation -->
+
+						<form class="row g-3 needs-validation" [formGroup]="modemForm" #f="ngForm"
+							(submit)="save(f.value)">
+							<div class="col-md-6" *ngIf="userProfile?.userRoles[0] == 'SuperAdmin'">
+								<label for="validationDefault01" class="form-label">Select Agent<span class="star">
+										*</span></label>
+								<!-- <select
+									class="form-select requiredField"
+									formControlName="agent_id"
+								>
+									<option selected disabled value="">
+										Choose...
+									</option>
+									<option
+										*ngFor="let item of userList"
+										[value]="item?.id"
+									>
+										{{ item?.full_name }}
+									</option>
+								</select> -->
+								<ngx-select-dropdown [instanceId]="'instance2'" (change)="selectionChanged($event)"
+									[multiple]="false" formControlName="agent_id" [config]="config" [options]="userList"></ngx-select-dropdown>
+							</div>
+							<div class="col-md-6">
+								<label for="validationDefault02" class="form-label">Phone Number<span class="star">
+										*</span></label>
+								<input type="number" formControlName="phone_number" class="form-control requiredField"
+									id="validationDefault02" min="0" (keypress)="
+														onKeyPress($event)
+													" (keyup)="numberOnly($event)" value="" />
+							</div>
+
+							<div class="col-md-6">
+								<label for="validationDefault04" class="form-label">Status<span class="star">
+										*</span></label>
+								<select class="form-select requiredField" formControlName="suspended">
+									
+									<option value="true">Suspend</option>
+									<option value="false">Active</option>
+								</select>
+
+
+							</div>
+
+							<div class="col-12">
+								<button class="btn btn-primary" type="submit">
+									Submit
+								</button>
+							</div>
+						</form>
+						<!-- End Browser Default Validation -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+<!-- End #main -->

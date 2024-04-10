@@ -1,0 +1,12 @@
+<div class="error-handler-main" *ngIf="showErrors">
+  <div class="error-container">
+    <h4 class="text-danger fw-bold">Request failed with the following Error</h4>
+    <pre *ngIf="error">
+        {{ error | json }}
+    </pre>
+    <div class="d-flex gap-2">
+      <button class="btn btn-dark">Report Error</button>
+      <button class="btn btn-light" (click)="close()">Close</button>
+    </div>
+  </div>
+</div>

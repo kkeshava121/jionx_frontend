@@ -1,0 +1,70 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+	<ul class="sidebar-nav" id="sidebar-nav">
+		<!-- <li class="nav-item">
+			<a class="nav-link collapsed" routerLink="/admin/dashboard">
+				<i class="bi bi-grid"></i>
+				<span>Dashboard</span>
+			</a>
+		</li> -->
+		<li
+			class="nav-item"
+			*ngFor="let menu of menus; let i= index;"
+		>
+			<a
+				class="nav-link collapsed"
+				[routerLink]="menu?.url"
+				*ngIf="menu?.isEnabled && (menu?.name == 'Dashboard' || menu?.name == 'Merchants')"
+			>
+			<i [ngClass]="menu?.icon"></i><span>{{menu?.name}}</span
+				><i class="bi bi-chevron-down ms-auto" *ngIf="menu?.child?.length > 0"></i>
+			</a>
+			<a
+				class="nav-link collapsed"
+				[attr.data-bs-target]="'#'+menu?.id"
+				data-bs-toggle="collapse"
+				href="#"
+				*ngIf="menu?.isEnabled && (menu?.name != 'Dashboard' && menu?.name != 'Merchants')"
+			>
+				<i [ngClass]="menu?.icon"></i><span>{{menu?.name}}</span
+				><i class="bi bi-chevron-down ms-auto" *ngIf="menu?.child?.length > 0"></i>
+			</a>
+
+			<ul
+				[id]="menu?.id"
+				class="nav-content collapse"
+				[attr.data-bs-parent]="'#'+menu?.id"
+				*ngIf="menu?.child?.length > 0"
+			>
+				<li	*ngFor="let subMenu of menu?.child">
+					<a
+						[routerLink]="subMenu?.url"
+						routerLinkActive="active"
+						*ngIf="subMenu?.view !=false || subMenu?.action !=false"
+					>
+						<i class="bi bi-circle"></i><span>{{subMenu?.name}}</span>
+						<span class="badge bg-info" style="margin-left: 19px" *ngIf="subMenu?.name == 'Fake'">{{
+							statusCount?.fake || 0
+						}}</span>
+						<span class="badge bg-primary" style="margin-left: 19px" *ngIf="subMenu?.name == 'Success'">{{
+							statusCount?.success || 0
+						}}</span>
+						<span class="badge bg-warning" style="margin-left: 19px" *ngIf="subMenu?.name == 'Pending'">{{
+							statusCount?.pending || 0
+						}}</span>
+						<span class="badge bg-danger" style="margin-left: 19px" *ngIf="subMenu?.name == 'Rejected'">{{
+							statusCount?.rejected || 0
+						}}</span>
+						<span class="badge bg-success" style="margin-left: 19px" *ngIf="subMenu?.name == 'Approved'">{{
+							statusCount?.approved || 0
+						}}</span>
+						<span class="badge bg-danger" style="margin-left: 19px"  *ngIf="subMenu?.name == 'Danger'">{{
+							statusCount?.danger || 0
+						}}</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</aside>
+<!-- End Sidebar -->

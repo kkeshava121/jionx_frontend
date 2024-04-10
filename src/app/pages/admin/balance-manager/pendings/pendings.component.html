@@ -1,0 +1,351 @@
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h1>Pendings List</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a routerLink="/admin/dashboard">Admin</a>
+				</li>
+				<li class="breadcrumb-item">Balance Manager</li>
+				<li class="breadcrumb-item active">Pendings</li>
+			</ol>
+		</nav>
+	</div>
+	<!-- End Page Title -->
+
+	<section class="section">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body pt-1">
+						<div
+							class="spinner-border text-primary"
+							role="status"
+							*ngIf="isDisplayed"
+						></div>
+						<div class="row pb-4">
+							<div class="col-md-12 py-4 text-start">
+								<!-- <input
+									type="text"
+									[(ngModel)]="searchTerm"
+									(keyup)="search(balanceManager)"
+									placeholder="Search"
+									class="form-control rounded"
+								/> -->
+
+								<!-- <form
+									class="row g-3"
+									[formGroup]="settingSearchForm"
+									#f="ngForm"
+									(submit)="search(f.value)"
+								>
+									<div class="col-2">
+										<div class="dataTables_length">
+											<label class="form-label"
+												>Show Entries</label
+											>
+											<select
+												[(ngModel)]="itemsPerPage"
+												(change)="balanceManagerList()"
+												formControlName="itemsPerPage"
+												class="form-select"
+											>
+												<option value="5">5</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-2">
+										<label
+											for="inputNanme4"
+											class="form-label"
+											>Sender</label
+										>
+										<select
+											class="form-select"
+											formControlName="sender"
+										>
+											<option selected disabled value="">
+												Choose...
+											</option>
+
+											<option
+												*ngFor="let item of bankList"
+												[value]="item?.bank_name"
+											>
+												{{ item?.bank_name }}
+											</option>
+										</select>
+
+										
+									</div>
+									<div class="col-2">
+										<label
+											for="inputEmail4"
+											class="form-label"
+											>Agent Account</label
+										>
+										<input
+											type="text"
+											class="form-control"
+											formControlName="agentAccountNo"
+											id="inputEmail4"
+											placeholder="Agent Account"
+										/>
+									</div>
+									<div class="col-2">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Transaction Id</label
+										>
+										<input
+											type="test"
+											class="form-control"
+											formControlName="transactionId"
+											id="inputPassword4"
+											placeholder="Transaction Id"
+										/>
+									</div>
+									
+									<div class="col-2">
+										<label
+											for="inputPassword4"
+											class="form-label"
+											>Type</label
+										>
+										<select
+											class="form-select"
+											formControlName="type"
+										>
+											<option selected disabled value="">
+												Choose...
+											</option>
+
+											<option value="Cash Out">
+												Chash Out
+											</option>
+											<option value="Cash In">
+												Cash In
+											</option>
+											<option value="B2B Transfer">
+												B2B Transfer
+											</option>
+											<option value="B2B Received">
+												B2B Received
+											</option>
+										</select>
+									</div>
+									<div class="col-2 dateError">
+										<label
+											for="inputEmail4"
+											class="form-label"
+											>Date From</label
+										>
+										<input
+											type="date"
+											class="form-control"
+											formControlName="dateFrom"
+											id="inputEmail4"
+										/>
+										<p
+											*ngIf="
+												validationMessageFrom &&
+												f.value.dateTo &&
+												f.value.dateFrom == '' &&
+												f.value.dateTo
+											"
+											class="validationerror"
+										>
+											{{ validationMessageFrom }}
+										</p>
+									</div>
+									<div class="col-2 dateError">
+										<label
+											for="inputEmail4"
+											class="form-label"
+											>Date To</label
+										>
+										<input
+											type="date"
+											class="form-control"
+											formControlName="dateTo"
+											id="inputEmail4"
+										/>
+										<p
+											*ngIf="
+												validationMessageTo &&
+												f.value.dateFrom &&
+												f.value.dateTo == '' &&
+												f.value.dateFrom
+											"
+											class="validationerror"
+										>
+											{{ validationMessageTo }}
+										</p>
+									</div>
+									<div class="text-start col-2 pt-4 mt-4">
+										<button
+											type="submit"
+											class="btn btn-primary"
+										>
+											Search
+										</button>
+										<button
+											type="button"
+											(click)="resetSearch()"
+											[disabled]="isReset"
+											class="btn btn-primary mx-1"
+										>
+											<i
+												class="fa fa-refresh"
+												aria-hidden="true"
+											></i>
+										</button>
+									</div>
+								</form> -->
+								<app-balance-manager-search
+								[itemsPerPage]="itemsPerPage"
+								[pageNumber]="pageNumber"
+								[balance_manager_filter]="1"
+								[autoRefresh]="false"
+								(balanceManager)="search($event)"
+							></app-balance-manager-search>
+							<div class="col-4 py-4" *ngIf="selectedOptions.length > 0">
+								<button type="button" class="btn btn-success mx-2" (click)="approvedAndRejectedStatus('approved')">
+									Approved
+								</button>
+								<button type="button" class="btn btn-danger" (click)="approvedAndRejectedStatus('rejected')">
+									Rejected
+								</button>
+							</div>
+							
+							</div>
+						</div>
+						<!-- Table with stripped rows -->
+						<table
+							class="table table-striped table-bordered"
+							id="dash-all-transactions"
+						>
+							<thead>
+								<tr>
+									<th>
+										<input type="checkbox" class="form-check-input selectallcheckbox"
+											[checked]="isSelectAllChecked" (click)="approvedAllList($event)" />
+									</th>
+									<th>SL</th>
+									<th>Sender</th>
+									<th>A Account</th>
+									<th>C Account</th>
+									<th>Old Balance</th>
+									<th>Amount</th>
+									<th>Commision</th>
+									<th>Last Balance</th>
+									<th>Transaction ID</th>
+									<th>Type</th>
+									<th>Date</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr
+									*ngFor="
+										let item of displayedData
+											| paginate
+												: {
+														itemsPerPage:
+															itemsPerPage,
+														currentPage: pageNumber,
+														totalItems: totalRows
+												  };
+										let i = index
+									"
+								>
+								<td>
+									<input type="checkbox" class="form-check-input" [checked]="isChecked" (click)="
+											checkBoxValue(item?.id, $event)
+										" />
+								</td>
+									<td>{{ i + 1 }}</td>
+									<td>{{ item?.sender }}</td>
+									<td>{{ item?.agent_account_no }}</td>
+									<td>{{ item?.customer_account_no }}</td>
+									<td>
+										{{ item?.old_balance | number }}
+									</td>
+									<td>
+										{{ item?.amount | number }}
+									</td>
+
+									<td>
+										{{ item?.commision | number }}
+									</td>
+									<td>
+										{{ item?.last_balance | number }}
+									</td>
+
+									<td>{{ item?.transaction_id }}</td>
+									<td>{{ item?.b_type }}</td>
+									<td>
+										<span>{{item?.formated_created_at}}</span>
+										<!-- <p style="color: green;margin-bottom: 0px;">{{item?.date_in_words}}</p> -->
+									</td>
+									<td>
+										<a class="custom-icons">
+											<i
+												class="fa fa-check me-2"
+												aria-hidden="true"
+												title="Approve"
+												(click)="
+													doAction(
+														'approved',
+														item?.id,
+														'approved'
+													)
+												"
+											></i>
+										</a>
+										<a class="custom-icons">
+											<i
+												class="fa fa-times-circle me-2"
+												aria-hidden="true"
+												title="Reject"
+												(click)="
+													doAction(
+														'rejected',
+														item?.id,
+														'rejected'
+													)
+												"
+											></i>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div
+							class="text-center recordnotfound"
+							*ngIf="!displayedData"
+						>
+							Record not found
+						</div>
+						<!-- <app-pagination
+							[allPagesNumber]="allPages"
+							(changePage)="onPageChange($event)"
+                            *ngIf="allPages"
+						></app-pagination> -->
+						<div class="text-end pt-4">
+							<pagination-controls
+								(pageChange)="onPageChange($event)"
+							></pagination-controls>
+						</div>
+						<!-- End Table with stripped rows -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>

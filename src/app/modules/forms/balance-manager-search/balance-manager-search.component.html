@@ -1,0 +1,123 @@
+<form
+	class="row g-3"
+	[formGroup]="settingSearchForm"
+	#f="ngForm"
+	(submit)="balanceManagerSearch(f.value)"
+>
+	<div class="col-2">
+		<div class="dataTables_length">
+			<label class="form-label">Show Entries</label>
+			<select
+				[(ngModel)]="itemsPerPage"
+				formControlName="itemsPerPage"
+				class="form-select"
+			>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-2">
+		<label for="inputNanme4" class="form-label">Sender</label>
+		<select class="form-select" formControlName="sender">
+			<option selected disabled value="">Choose...</option>
+
+			<option *ngFor="let item of bankList" [value]="item?.bank_name">
+				{{ item?.bank_name }}
+			</option>
+		</select>
+	</div>
+	<div class="col-2">
+		<label for="inputEmail4" class="form-label">Agent Account</label>
+		<input
+			type="text"
+			class="form-control"
+			formControlName="agentAccountNo"
+			id="inputEmail4"
+			placeholder="Agent Account"
+		/>
+	</div>
+	<div class="col-2">
+		<label for="inputPassword4" class="form-label">Transaction Id</label>
+		<input
+			type="test"
+			class="form-control"
+			formControlName="transactionId"
+			id="inputPassword4"
+			placeholder="Transaction Id"
+		/>
+	</div>
+	<div class="col-2">
+		<label for="inputPassword4" class="form-label">Type</label>
+		<select class="form-select" formControlName="type">
+			<option selected disabled value="" *ngIf="currentRole != 'Merchant'">Choose...</option>
+
+			<option value="Cash Out">Chash Out</option>
+			<option value="B2B Transfer" *ngIf="currentRole != 'Merchant'">B2B Transfer</option>
+			<option value="B2B Received" *ngIf="currentRole != 'Merchant'">B2B Received</option>
+		</select>
+	</div>
+	<div class="col-2 dateError">
+		<label for="inputEmail4" class="form-label">Date From</label>
+		<input
+			type="date"
+			class="form-control"
+			formControlName="dateFrom"
+			id="inputEmail4"
+		/>
+		<p
+			*ngIf="
+				validationMessageFrom &&
+				f.value.dateTo &&
+				f.value.dateFrom == '' &&
+				f.value.dateTo
+			"
+			class="validationerror"
+		>
+			{{ validationMessageFrom }}
+		</p>
+	</div>
+	<div class="col-2 dateError">
+		<label for="inputEmail4" class="form-label">Date To</label>
+		<input
+			type="date"
+			class="form-control"
+			formControlName="dateTo"
+			id="inputEmail4"
+		/>
+		<p
+			*ngIf="
+				validationMessageTo &&
+				f.value.dateFrom &&
+				f.value.dateTo == '' &&
+				f.value.dateFrom
+			"
+			class="validationerror"
+		>
+			{{ validationMessageTo }}
+		</p>
+	</div>
+	<div class="text-start col-2 pt-4 mt-4">
+		<button type="submit" class="btn btn-primary">Search</button>
+		<button
+			type="button"
+			(click)="resetSearch()"
+			[disabled]="isReset"
+			class="btn btn-primary mx-1"
+		>
+			<i class="fa fa-refresh" aria-hidden="true"></i>
+		</button>
+	</div>
+	<div class="text-start col-2 pt-0 mt-4" *ngIf="autoRefresh">
+		<label class="form-label" *ngIf="isAutoRefresh">Next Refresh after: {{formattedTime}}</label>
+		<label class="form-label" *ngIf="!isAutoRefresh">AutoRefresh is Disabled</label>
+		<div class="form-check form-switch">
+			
+			<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" [(ngModel)]="isAutoRefresh" [ngModelOptions]="{standalone: true}" (change)="setTimer()">
+			<label class="form-check-label" for="flexSwitchCheckChecked">AutoRefresh {{isAutoRefresh? 'on' : 'Off'}}</label>
+		  </div>
+	</div>
+</form>

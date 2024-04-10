@@ -1,0 +1,111 @@
+#dashboard-tabs .border-left-primary {
+    border-left: 0.25rem solid #4e73df!important;
+}
+#dashboard-tabs .border-left-secondary {
+    border-left: 0.25rem solid #6c757d!important;
+}
+#dashboard-tabs .border-left-success {
+    border-left: 0.25rem solid #1cc88a!important;
+}
+/* #dashboard-tabs .border-left-info {
+    border-left: 0.25rem solid #36b9cc!important;
+} */
+#dashboard-tabs .border-left-warning {
+    border-left: 0.25rem solid #f6c23e!important;
+}
+#dashboard-tabs .border-left-dark {
+    border-left: 0.25rem solid #212c52!important;
+}
+#dashboard-tabs .border-left-info {
+    border-left: 0.25rem solid #0dcbf2!important;
+}
+#dashboard-tabs .border-left-blue {
+    border-left: 0.25rem solid #3e7ef6!important;
+}
+#dashboard-tabs .border-left-danger {
+    border-left: 0.25rem solid #f6443e!important;
+}
+
+.card{
+    margin-bottom: 2px !important;
+}
+
+.icon-primary{
+    zoom: 1.5;
+    color: #4e73df;
+}
+.icon-secondary{
+    zoom: 1.5;
+    color: #6c757d;
+}
+.icon-success{
+    zoom: 1.5;
+    color: #1cc88a;
+}
+.icon-warning{
+    zoom: 1.5;
+    color: #f6c23e;
+}
+.icon-info{
+    zoom: 1.5;
+    color: #0dcbf2;
+}
+.icon-blue{
+    zoom: 1.5;
+    color: #3e7ef6;
+}
+.icon-dark{
+    zoom: 1.5;
+    color: #212c52;
+}
+.icon-danger{
+    zoom: 1.5;
+    color: #f6443e;
+}
+.text-info, .text-success, .text-danger{
+    font-size: 12px;
+    margin: 0px;
+    margin-left: 12px;
+    margin-top: 7px;
+}
+.no-gutters .text-info, .no-gutters .text-success{
+    font-size: 12px;
+    margin: 0px;
+}
+
+
+
+#dashboard-tabs .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 0px;
+}
+#dashboard-tabs .align-items-center {
+    align-items: center!important;
+}
+#dashboard-tabs .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+#dashboard-tabs .text-xs {
+    font-size: .7rem;
+}
+#dashboard-tabs .text-primary {
+    color: #4e73df!important;
+}
+#dashboard-tabs .font-weight-bold {
+    font-weight: 700!important;
+}
+
+#dashboard-tabs .font-weight-bold {
+    font-weight: 700!important;
+}
+#dashboard-tabs .text-gray-300 {
+    color: #dddfeb!important;
+}
+#dashboard-tabs .text-blue{
+    color: #3e7ef6!important;
+}
+#dashboard-tabs .text-danger{
+    color: #f65a3e!important;
+}

@@ -1,2 +1,2 @@
-# jnx_frontend
-jnx_frontend
+# jionex_frontend
+Angular App attabas
