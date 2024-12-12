@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CloudFormation template for pay2nep production stack.
+
+Parameters:
+  VpcCidrProd:
+    Type: String
+    Default: "172.21.0.0/16"
+    Description: CIDR block for the VPC
+
+  InstanceType:
+    Type: String
+    Default: "t2.medium"
+    Description: Instance type for ECS EC2 instances
+
+  KeyName:
+    Type: String
+    Description: EC2 Key Pair name
+    Default: "jnx-prod-ecs-ec2-key-mumbai"
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCidrProd
+      Tags:
+        - Key: Name
+          Value: "pay2nep-prod-vpc"
+
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      ImageId: "ami-0e6364eb63f8b9c35"
+      Tags:
+        - Key: Name
+          Value: "pay2nep-ecs-instance"
