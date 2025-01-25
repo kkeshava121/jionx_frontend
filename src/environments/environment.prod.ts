@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  backendHost: 'https://api3.devopswala.com/',
+  backendHost: 'https://alchemisprochem.com/',
   //authAppHost: '',
-  domain: 'https://app3.devopswala.com/',
+  domain: 'https://api.alchemisprochem.com/',
 };
